@@ -5,7 +5,7 @@ export default function Editorial() {
         <section className="py-12 sm:py-20 px-4 sm:px-6 text-center text-sm text-black bg-white flex flex-col items-center">
             
             
-            <div className="flex h-64 sm:h-96 md:h-120 w-64 sm:w-96 md:w-150 shrink-0 items-center justify-center border-2 border-black bg-gray-200">
+            <div className="w-full flex h-64 sm:h-96 md:h-120 items-center justify-center border-2 border-black bg-gray-200">
                 <XMarkIcon className="h-20 w-20 text-black" />
             </div>
 
