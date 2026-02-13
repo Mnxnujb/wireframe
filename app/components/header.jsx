@@ -1,80 +1,156 @@
-"use client"
-import { useEffect, useState } from "react";
-import Link from "next/link";
+    "use client";
 
-export default function Header(){
-    const [open, setOpen] = useState(false);
+    import { useState, useEffect } from "react";
+    import Link from "next/link";
+
+    import {
+    MagnifyingGlassIcon,
+    HeartIcon,
+    ShoppingBagIcon,
+    UserIcon,
+    Bars3Icon,
+    XMarkIcon,
+    } from "@heroicons/react/24/outline";
+
+    export default function Header() {
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
-    //DETECT SCOLL
-
-    useEffect(()=>{
-        const handleScroll =()=>{
-            setScrolled(window.scrollY > 20)
-        }
-
-        window.addEventListener("scroll", handleScroll)
-        return()=> window.removeEventListener("scroll", handleScroll)
-    })
+    /* scroll detection */
+    useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 30);
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     const links = [
-    ["HOME", "/"],
-    ["SHOP", "/shop"],
-    ["COLLECTIONS", "/collections"],
-    ["BEST SELLERS", "/best-sellers"],
-    ["GIFT CARDS", "/gift-cards"],
-    ["HERITAGE", "/heritage"],
-    ["LOOKBOOK", "lookbook"],
-    ["CONTACT", "contact"],
-];
+        ["Home", "/"],
+        ["Shop", "/shop"],
+        ["Collections", "/collections"],
+        ["Best Sellers", "/best-sellers"],
+        ["Gift Cards", "/gift-cards"],
+        ["Heritage", "/heritage"],
+        ["Lookbook", "/lookbook"],
+        ["Contact", "/contact"],
+    ];
 
     return (
-        <header 
+        <>
+        {/* ================= HEADER ================= */}
+        <header
             className={`
-                fixed top-0 left-0 w-full z-50
-                transition-all duration-300
-                ${scrolled ? "bg-white shadow-md" : "bg-gray-300"}  
+            fixed top-0 left-0 w-full z-50
+            transition-all duration-300
+            ${scrolled ? "bg-white shadow-sm" : "bg-gray-200"}
             `}
         >
-            <div className="max-w-8xl mx-auto px-4 h-14 flex justify-between items-center">
-                {/* <h1 className="font-semibold text-lg">ITUEN BASI</h1> */}
-                <img src={"/IBL logo.png"} className="h-21"/>
+            <div
+            className="
+                max-w-7xl mx-auto
+                px-4 sm:px-6 lg:px-10
+                h-12 sm:h-14
+                flex items-center justify-between
+            "
+            >
 
+            {/* Logo */}
+                <img src="/IBL logo.png" className="h-18" />
 
-                {/*DESKTOP MODE*/}
-                <nav className="hidden md:flex gap-6">
-                    {links.map(([name, href]) =>(
-                        <Link key={name} href={href} className="text-black hover:text-gray-300">
-                            {name}
-                        </Link>
-                    )
-                )}
-                </nav>
+            {/* Desktop nav */}
+            <nav className="hidden lg:flex gap-7 text-sm">
+                {links.map(([name, href]) => (
+                <Link key={name} href={href} className="hover:opacity-60 text-black">
+                    {name}
+                </Link>
+                ))}
+            </nav>
 
-                {/**MOBILE BUTTON*/}
-                <button className="md:hidden text-xl text-black"
-                    onClick={()=> setOpen(!open)}
+            {/* Icons */}
+            <div className="flex items-center gap-4 stroke-black">
+                {/* SEARCH */}
+                <MagnifyingGlassIcon
+                className="h-5 w-5 cursor-pointer stroke-black p-1 rounded transition hover:border-2 hover:border-yellow-400"
+                onClick={() => setSearchOpen(true)}
+                />
+
+                <HeartIcon className="h-5 w-5 cursor-pointer stroke-black p-1 rounded transition hover:border-2 hover:border-yellow-400" />
+                <ShoppingBagIcon className="h-5 w-5 cursor-pointer stroke-black p-1 rounded transition hover:border-2 hover:border-yellow-400" />
+                <UserIcon className="h-5 w-5 cursor-pointer stroke-black p-1 rounded transition hover:border-2 hover:border-yellow-400" />
+
+                {/* Mobile menu button */}
+                <button
+                    className="lg:hidden hover:opacity-60 transition-opacity p-1 rounded hover:border-2 hover:border-yellow-400"
+                    onClick={() => setMenuOpen(true)}
                 >
-                    ☰
+                    <Bars3Icon className="h-6 w-6 stroke-black" />
                 </button>
             </div>
-                {/**MOBILE MENU*/}
-                {open && (
-                    <div className="md-hidden px-4 pb-4 space-y-4 ">
-                        {links.map(([name, href]) =>(
-                            <Link
-                                key={name}
-                                href={href}
-                                className="block text-black hover:text-gray-300"
-                                onClick={()=> setOpen(false)}
-                            >
-                                {name}
-                            </Link>
-                        ))}
+            </div>
 
-                    </div>
-                )}
+            {/* ================= SEARCH BAR ================= */}
+            <div
+            className={`
+                overflow-hidden transition-all duration-300 border-2 border-black text-black
+                ${searchOpen ? "max-h-24 py-4" : "max-h-0"}
+            `}
+            >
+            <div className="max-w-7xl mx-auto px-6 flex gap-3">
+                <input
+                autoFocus
+                type="text"
+                placeholder="Search products..."
+                className="flex-1 border px-4 py-2"
+                />
+
+                <button onClick={() => setSearchOpen(false)} className="p-1 rounded hover:border-2 hover:border-yellow-400 transition cursor-pointer">
+                <XMarkIcon className="h-6 w-6 stroke-black" />
+                </button>
+            </div>
+            </div>
         </header>
-    )
-}
 
+        {/* ================= MOBILE DRAWER ================= */}
+
+        {/* Overlay */}
+        {menuOpen && (
+            <div
+            className="fixed inset-0 bg-black/40 z-40"
+            onClick={() => setMenuOpen(false)}
+            />
+        )}
+
+        {/* Side menu */}
+        <aside
+            className={`
+            fixed top-0 right-0 h-full w-72 bg-white z-50 text-black
+            transform transition-transform duration-300
+            ${menuOpen ? "translate-x-0" : "translate-x-full"}
+            `}
+        >
+            <div className="p-6">
+            <button
+                type="button"
+                className="mb-6 hover:opacity-60 transition-opacity cursor-pointer p-1 rounded hover:border-2 hover:border-yellow-400"
+                onClick={() => setMenuOpen(false)}
+            >
+                <XMarkIcon className="h-6 w-6 stroke-black" />
+            </button>
+
+            <nav className="space-y-5 text-sm">
+                {links.map(([name, href]) => (
+                <Link
+                    key={name}
+                    href={href}
+                    className="block hover:opacity-60 transition-opacity"
+                    onClick={() => setMenuOpen(false)}
+                >
+                    {name}
+                </Link>
+                ))}
+            </nav>
+            </div>
+        </aside>
+        </>
+    );
+    }

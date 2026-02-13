@@ -2,26 +2,34 @@ import Link from "next/link";
 
 export default function Hero(){
     return (
-        <section className="text-center py-28 px-4 bg-gray-300 text-black">
-            <h2 className="text-sm tracking-widest mb-4">
+        <section className="mt-0 min-h-screen flex flex-col justify-center items-center md:items-start py-16 sm:py-20 md:py-28 px-6 md:px-20 bg-white text-black border-b-2 border-black">
+            
+            <h2 className="text-xs md:text-sm tracking-widest mb-4">
                 NEW COLLECTION
             </h2>
-            <h1 className="text-5xl font-semibold mb-6">
-                TIMELESS ELEGANCE, REIMAGINED
+            
+            {/* Font size: 4xl on mobile, 7xl on desktop */}
+            <h1 className="text-4xl md:text-7xl font-semibold mb-6 leading-tight text-center md:text-left">
+                <span className="block">TIMELESS</span> 
+                <span className="block">ELEGANCE,</span>
+                <span className="block">REIMAGINED</span>
             </h1>
-            <p className="text-sm mb-6">
+
+            <p className="text-sm mb-10 text-center md:text-left">
                 Where heritage meets contemporary luxury
             </p>
-            <div className="flex justify-center gap-4 ">
+
+            {/* Buttons: full width on mobile, auto width on desktop */}
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-4 w-full md:w-auto">
                 <Link
                     href="/shop"
-                    className="px-6 py-3 bg-white text-black border-2 border-black hover:bg-black hover:text-white "
+                    className="w-full md:w-auto text-center px-8 py-4 bg-white text-black border-2 border-black hover:bg-black hover:text-white transition-all font-medium"
                 >
                     SHOP THE COLLECTION
                 </Link>
                 <Link 
                     href="/heritage"
-                    className= "px-6 py-3 hover:border-2 hover:border-black"
+                    className="w-full md:w-auto text-center px-8 py-4 border-2 border-transparent hover:border-black transition-all font-medium"
                 >
                     EXPLORE HERITAGE
                 </Link>
