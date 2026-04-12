@@ -205,9 +205,9 @@ function ShopContent() {
     };
 
     return (
-        <div className="min-h-screen bg-white text-black border-b border-black overflow-x-clip">
-            <div className="w-full max-w-[1800px] mx-auto px-[clamp(0.75rem,2.5vw,3rem)] py-[clamp(1.5rem,3vw,3.5rem)]">
-                <h1 className="text-[clamp(1.4rem,2.4vw,3rem)] font-semibold text-center mb-[clamp(0.6rem,1.2vw,1.1rem)] mt-12 text-black tracking-[clamp(0.08em,0.2vw,0.2em)]">
+        <div className="bg-white text-black border-b border-black overflow-x-clip max-w-full mx-auto px-6 py-16">
+            <div className="w-full max-w-[1800px] mx-auto px-[clamp(0.75rem,2.5vw,3rem)] ">
+                <h1 className="text-xl sm:text-4xl md:text-4xl lg:text-4xl font-semibold text-center mt-12 mb-12 text-black tracking-widest">
                     SHOP
                 </h1>
                 <h3 className="text-black text-[clamp(0.9rem,1vw,1.15rem)] text-center mb-[clamp(1rem,1.8vw,2rem)]">

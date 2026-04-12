@@ -53,10 +53,10 @@ export default function BestSellers(){
 
 
     return(
-        <section className="min-h-screen bg-white text-black border-b border-black overflow-x-clip">
-            <div className="w-full max-w-[1800px] mx-auto px-[clamp(0.75rem,2.5vw,3rem)] py-[clamp(1.5rem,3vw,3.5rem)]">
+        <div className="bg-white text-black border-b border-black overflow-x-clip max-w-full mx-auto px-6 py-16">
+            <div className="w-full max-w-[1800px] mx-auto px-[clamp(0.75rem,2.5vw,3rem)] ">
                 {/**TITLE, */}
-                <h1 className="text-[clamp(1.4rem,2.4vw,3rem)] font-semibold mt-12 text-center mb-[clamp(1.25rem,2.8vw,3.5rem)] text-black tracking-[clamp(0.08em,0.2vw,0.2em)]">BEST SELLERS</h1>
+                <h1 className="text-xl sm:text-4xl md:text-4xl lg:text-4xl font-semibold text-center mt-12 mb-12 text-black tracking-widest">BEST SELLERS</h1>
 
 
 
@@ -88,7 +88,7 @@ export default function BestSellers(){
                 onClose={() => setSelectedProduct(null)}
             />
             )}
-        </section>
+        </div>
     )
 }
 
